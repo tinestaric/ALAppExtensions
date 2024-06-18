@@ -106,6 +106,7 @@ codeunit 30228 "Shpfy Refunds API"
         RefundLineRecordRef.GetTable(RefundLine);
         JsonHelper.GetValueIntoField(JLine, 'quantity', RefundLineRecordRef, RefundLine.FieldNo(Quantity));
         JsonHelper.GetValueIntoField(JLine, 'restocked', RefundLineRecordRef, RefundLine.FieldNo(Restocked));
+        JsonHelper.GetValueIntoField(JLine, 'location.legacyResourceId', RefundLineRecordRef, RefundLine.FieldNo("Location Id"));
         JsonHelper.GetValueIntoField(JLine, 'priceSet.shopMoney.amount', RefundLineRecordRef, RefundLine.FieldNo(Amount));
         JsonHelper.GetValueIntoField(JLine, 'priceSet.presentmentMoney.amount', RefundLineRecordRef, RefundLine.FieldNo("Presentment Amount"));
         JsonHelper.GetValueIntoField(JLine, 'subtotalSet.shopMoney.amount', RefundLineRecordRef, RefundLine.FieldNo("Subtotal Amount"));
