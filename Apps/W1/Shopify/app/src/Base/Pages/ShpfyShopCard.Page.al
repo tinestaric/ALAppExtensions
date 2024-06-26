@@ -139,6 +139,12 @@ page 30101 "Shpfy Shop Card"
                     ToolTip = 'Specifies the date on which Business Central will no longer support Shopify Admin API version. To continue to use your integration, upgrade to the latest version of Business Central before this date.';
                     Editable = false;
                 }
+                field("Posted Invoice Sync"; Rec."Posted Invoice Sync")
+                {
+                    ApplicationArea = All;
+                    Importance = Additional;
+                    ToolTip = 'Specifies whether the posted sales invoices can be synchronized to Shopify.';
+                }
             }
             group(ItemSync)
             {
@@ -244,6 +250,10 @@ page 30101 "Shpfy Shop Card"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the status of a product in Shopify via the sync when an item is removed in Shopify or an item is blocked in Business Central.';
+                }
+                field("Items Mapped to Products"; Rec."Items Mapped to Products")
+                {
+                    ToolTip = 'Specifies if only the items that are mapped to Shopify products/Shopify variants are synchronized from Posted Sales Invoices to Shopify.';
                 }
             }
             group(PriceSynchronization)
@@ -644,6 +654,19 @@ page 30101 "Shpfy Shop Card"
                 RunPageLink = "Shop Code" = field(Code);
                 ToolTip = 'Maps the Shopify payment methods to the related payment methods and prioritize them.';
             }
+            action(PaymentTerms)
+            {
+                ApplicationArea = All;
+                Caption = 'Payment Terms Mapping';
+                Image = SuggestPayment;
+                Promoted = true;
+                PromotedCategory = Category4;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+                RunObject = page "Shpfy Payment Terms Mapping";
+                RunPageLink = "Shop Code" = field(Code);
+                ToolTip = 'Maps the Shopify payment terms to the related payment terms and prioritize them.';
+            }
             action(Orders)
             {
                 ApplicationArea = All;
@@ -965,6 +988,26 @@ page 30101 "Shpfy Shop Card"
                     trigger OnAction();
                     begin
                         Report.Run(Report::"Shpfy Sync Shipm. to Shopify");
+                    end;
+                }
+                action(SyncPostedSalesInvoices)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Sync Posted Sales Invoices';
+                    Image = Export;
+                    Enabled = Rec."Posted Invoice Sync";
+                    Promoted = true;
+                    PromotedCategory = Category5;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                    ToolTip = 'Synchronize posted sales invoices to Shopify. The action can be used only if the Posted Invoice Sync field is enabled in the Shopify shop.';
+
+                    trigger OnAction();
+                    var
+                        ExportInvoicetoShpfy: Report "Shpfy Sync Invoices to Shpfy";
+                    begin
+                        ExportInvoicetoShpfy.SetShop(Rec.Code);
+                        ExportInvoicetoShpfy.Run();
                     end;
                 }
                 action(SyncDisputes)
