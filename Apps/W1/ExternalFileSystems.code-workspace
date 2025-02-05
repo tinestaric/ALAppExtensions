@@ -1,0 +1,40 @@
+{
+	"folders": [
+		{
+			"name": "External File Storage - Azure Blob Service Connector",
+			"path": "External File Storage - Azure Blob Service Connector/app"
+		},
+		{
+			"name": "External File Storage - Azure File Service Connector",
+			"path": "External File Storage - Azure File Service Connector/app"
+		},
+		{
+			"name": "External File Storage - SharePoint Connector",
+			"path": "External File Storage - SharePoint Connector/app"
+		}
+	],
+	"settings": {
+		"launch": {
+			"version": "0.2.0",
+			"configurations": [
+				{
+					"type": "al",
+					"request": "launch",
+					"name": "launch: feature/EXT-73-Reimplementation",
+					"server": "https://fps-alpaca.westeurope.cloudapp.azure.com",
+					"serverInstance": "f015ee5faa86dev",
+					"port": 443,
+					"authentication": "UserPassword",
+					"environmentType": "OnPrem",
+					"tenant": "default",
+					"startupObjectType": "Page",
+					"startupObjectId": 22,
+					"breakOnError": true,
+					"launchBrowser": true,
+					"enableLongRunningSqlStatements": true,
+					"enableSqlInformationDebugger": true
+				  }		
+			]
+		}
+	}
+}

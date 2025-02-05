@@ -349,11 +349,11 @@ codeunit 4570 "Ext. File Share Connector Impl" implements "External File Storage
     /// <returns>A base64-formatted image to be used as logo.</returns>
     procedure GetLogoAsBase64(): Text
     var
-        Base64Convert: Codeunit "Base64 Convert";
-        Stream: InStream;
+    // Base64Convert: Codeunit "Base64 Convert";
+    // Stream: InStream;
     begin
-        NavApp.GetResource('connector-logo.png', Stream);
-        exit(Base64Convert.ToBase64(Stream));
+        // NavApp.GetResource('connector-logo.png', Stream);
+        // exit(Base64Convert.ToBase64(Stream));
     end;
 
     internal procedure IsAccountValid(var Account: Record "Ext. File Share Account" temporary): Boolean
