@@ -232,7 +232,7 @@ codeunit 4580 "Ext. SharePoint Connector Impl" implements "External File Storage
         InitPath(AccountId, Path);
         InitSharePointClient(AccountId, SharePointClient);
         if SharePointClient.GetSubFoldersByServerRelativeUrl(Path, SharePointFolder) then
-            exit;
+            exit(true);
 
         ShowError(SharePointClient);
     end;
