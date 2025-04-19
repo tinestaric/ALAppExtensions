@@ -5,14 +5,24 @@
 
 namespace System.ExternalFileStorage;
 
-enum 4580 "Ext. SharePoint Auth. Type"
+/// <summary>
+/// Specifies the authentication types for SharePoint accounts.
+/// </summary>
+enum 4585 "Ext. SharePoint Auth Type"
 {
-    Access = Internal;
+    Extensible = false;
 
-    value(0; AuthCode)
+    /// <summary>
+    /// Authenticate using Client ID and Client Secret.
+    /// </summary>
+    value(0; "Client Secret")
     {
-        Caption = 'AuthCode';
+        Caption = 'Client Secret';
     }
+
+    /// <summary>
+    /// Authenticate using Client ID and Certificate.
+    /// </summary>
     value(1; Certificate)
     {
         Caption = 'Certificate';
